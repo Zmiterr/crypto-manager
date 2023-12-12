@@ -1,0 +1,52 @@
+@import 'fonts';
+@import 'reset';
+
+$primary-color: #FFFFFF;
+$primary-background: #000000;
+$scroll-background: #B8C2D4;
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  color: $primary-color;
+  background-color: $primary-background;
+  font-family: -apple-system, Kanit, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,
+  Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+
+  &:focus {
+   outline: none;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+  border-radius: 0
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $scroll-background;
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 0;
+}
