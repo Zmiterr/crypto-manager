@@ -12,7 +12,7 @@
     "pretty": "prettier --write ./**/*.ts",
     "lint": "next lint .",
     "lint:fix": "next lint . --fix",
-    "jest": "jest",
+    "test": "jest",
     "prepare": "husky install"
   },
   "dependencies": {
