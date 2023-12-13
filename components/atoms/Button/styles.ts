@@ -7,6 +7,7 @@ export const StyledButton = styled(Button, { name: 'StyledButton' })(({ theme })
   justifyContent: 'center',
   alignItems: 'center',
   width: 'fit-content',
+  height: 'fit-content',
   textTransform: 'none',
   textAlign: 'center',
   borderRadius: '0.875rem',
@@ -16,6 +17,9 @@ export const StyledButton = styled(Button, { name: 'StyledButton' })(({ theme })
 
   '&:hover:not(:disabled)': {
     cursor: 'pointer',
+  },
+  '&. buttonChildren': {
+    height: 'fit-content',
   },
 
   '&.isFullWidth': {
