@@ -21,6 +21,6 @@
       "@/*": ["./*"]
     },
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "helpers/metamask.test.js"],
   "exclude": ["node_modules"]
 }
