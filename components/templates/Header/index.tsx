@@ -39,7 +39,7 @@ const Header = ({ className }: Props) => {
           {hasProvider && wallet.accounts.length > 0 && (
             <Link>
               <a
-                href={`https://bscscan.com/address/${wallet.accounts[0]}`}
+                href={`https://testnet.bscscan.com/address/${wallet.accounts[0]}`}
                 target="_blank"
                 data-tooltip="Open in Block Explorer"
                 rel="noreferrer"

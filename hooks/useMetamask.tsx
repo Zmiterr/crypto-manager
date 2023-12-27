@@ -56,12 +56,6 @@ export const MetaMaskContextProvider = ({ children }: PropsWithChildren) => {
   const updateWalletAndAccounts = useCallback(() => _updateWallet(), [_updateWallet])
   const updateWallet = useCallback((accounts: any) => _updateWallet(accounts), [_updateWallet])
 
-  /**
-   * This logic checks if MetaMask is installed. If it is, then we setup some
-   * event handlers to update the wallet state when MetaMask changes. The function
-   * returned from useEffect is used as a "clean-up": in there, we remove the event
-   * handlers whenever the MetaMaskProvider is unmounted.
-   */
   useEffect(() => {
     const getProvider = async () => {
       const provider = await detectEthereumProvider({ silent: true })
