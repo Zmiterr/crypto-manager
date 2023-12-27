@@ -21,6 +21,6 @@
       "@/*": ["./*"]
     },
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "helpers/metamask.test.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "helpers/metamask.test.js", "cypress.config.ts"],
   "exclude": ["node_modules"]
 }

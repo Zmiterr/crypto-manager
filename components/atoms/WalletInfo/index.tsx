@@ -1,4 +1,4 @@
-import { Stack } from '@mui/material'
+import { Stack, Typography } from '@mui/material'
 
 import { formatBalance, formatChainAsNum } from '@/helpers'
 import { useMetaMask } from '@/hooks/useMetamask'
@@ -11,12 +11,32 @@ const WalletInfo = () => {
   return (
     <Stack maxWidth={'30rem'} justifyContent={'center'} alignItems={'center'}>
       {wallet.accounts.length > 0 && (
-        <Block gap={'2rem'} title={'wallet info'}>
+        <Block gap={'2rem'} title={'Wallet info'}>
           <Stack gap={'2rem'}>
-            <div>Wallet Accounts: {wallet.accounts[0]}</div>
-            <div>Wallet Balance: {formatBalance(wallet.balance)}</div>
-            <div>Hex ChainId: {wallet.chainId}</div>
-            <div>Numeric ChainId: {formatChainAsNum(wallet.chainId)}</div>
+            <Typography variant="body1" color={'general.secondaryText'}>
+              Wallet Accounts:{' '}
+              <Typography component={'span'} variant="body2" color={'background.light'}>
+                {wallet.accounts[0]}
+              </Typography>
+            </Typography>
+            <Typography variant="body1" color={'general.secondaryText'}>
+              Wallet Balance:{' '}
+              <Typography component={'span'} variant="body2" color={'background.light'}>
+                {formatBalance(wallet.balance)}
+              </Typography>
+            </Typography>
+            <Typography variant="body1" color={'general.secondaryText'}>
+              Hex ChainId:{' '}
+              <Typography component={'span'} variant="body2" color={'background.light'}>
+                {wallet.chainId}
+              </Typography>
+            </Typography>
+            <Typography variant="body1" color={'general.secondaryText'}>
+              Numeric ChainId:{' '}
+              <Typography component={'span'} variant="body2" color={'background.light'}>
+                {formatChainAsNum(wallet.chainId)}
+              </Typography>
+            </Typography>
           </Stack>
         </Block>
       )}

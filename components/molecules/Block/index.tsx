@@ -29,7 +29,9 @@ const Block: FC<Props> = ({ title, children, className, isLoading, titleSx, ...p
               <FormattedMessage id={title} />
             </Typography>
           ) : (
-            title
+            <Typography variant={'h4'} color={'background.light'}>
+              {title}
+            </Typography>
           )}
         </Box>
       )}
