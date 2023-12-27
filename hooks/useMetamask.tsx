@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import detectEthereumProvider from '@metamask/detect-provider'
+import { BrowserProvider, Eip1193Provider } from 'ethers'
 import { createContext, PropsWithChildren, useCallback, useContext, useEffect, useState } from 'react'
 
 interface WalletState {
@@ -10,6 +11,7 @@ interface WalletState {
 
 interface MetaMaskContextData {
   wallet: WalletState
+  provider: BrowserProvider | null
   hasProvider: boolean | null
   error: boolean
   errorMessage: string
@@ -23,6 +25,7 @@ const disconnectedState: WalletState = { accounts: [], balance: '', chainId: '' 
 const MetaMaskContext = createContext<MetaMaskContextData>({} as MetaMaskContextData)
 
 export const MetaMaskContextProvider = ({ children }: PropsWithChildren) => {
+  const [provider, setProvider] = useState<BrowserProvider | null>(null)
   const [hasProvider, setHasProvider] = useState<boolean | null>(null)
 
   const [isConnecting, setIsConnecting] = useState(false)
@@ -64,11 +67,14 @@ export const MetaMaskContextProvider = ({ children }: PropsWithChildren) => {
    */
   useEffect(() => {
     const getProvider = async () => {
-      const provider = await detectEthereumProvider({ silent: true })
+      const metamaskProvider = await detectEthereumProvider({ silent: true })
 
-      setHasProvider(Boolean(provider))
+      setHasProvider(Boolean(metamaskProvider))
 
-      if (provider) {
+      if (metamaskProvider) {
+        const provider = new BrowserProvider(metamaskProvider as unknown as Eip1193Provider)
+
+        setProvider(provider)
         updateWalletAndAccounts()
         window.ethereum.on('accountsChanged', updateWallet)
         window.ethereum.on('chainChanged', updateWalletAndAccounts)
@@ -107,6 +113,7 @@ export const MetaMaskContextProvider = ({ children }: PropsWithChildren) => {
     <MetaMaskContext.Provider
       value={{
         wallet,
+        provider,
         hasProvider,
         error: !!errorMessage,
         errorMessage,
