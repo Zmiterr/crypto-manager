@@ -4,6 +4,7 @@ import { formatBalance, formatChainAsNum } from '@/helpers'
 import { useMetaMask } from '@/hooks/useMetamask'
 
 import { Block } from '@/components/molecules'
+import GasEstimate from '@/components/molecules/GasEstimate'
 import SendTransaction from '@/components/molecules/SendTransaction'
 import { Layout, Page } from '@/components/templates'
 
@@ -13,7 +14,7 @@ const Home = () => {
   return (
     <Page title="SUMMARY.MAIN">
       <Layout>
-        <Stack maxWidth={'30rem'} justifyContent={'center'} alignItems={'center'}>
+        <Stack maxWidth={'60rem'} justifyContent={'center'} alignItems={'center'}>
           {wallet.accounts.length > 0 && (
             <Stack gap={'2rem'}>
               <Block gap={'2rem'}>
@@ -25,8 +26,10 @@ const Home = () => {
                 </Stack>
               </Block>
               <SendTransaction />
+              <GasEstimate />
             </Stack>
           )}
+
           {error && (
             <div onClick={clearError}>
               <strong>Error:</strong> {errorMessage}
