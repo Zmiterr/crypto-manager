@@ -9,6 +9,10 @@ jobs:
   e2e:
     name: E2E with docker
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node-version: [18.17.x]
     steps:
       # Изменяет владельца всех файлов на нас внутри системы
       # Нужно для работы докера
