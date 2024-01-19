@@ -8,7 +8,7 @@ on:
 jobs:
   e2e:
     name: E2E with docker
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
       # Изменяет владельца всех файлов на нас внутри системы
       # Нужно для работы докера
