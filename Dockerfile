@@ -1,5 +1,7 @@
 # syntax=docker/dockerfile:1
 FROM synthetixio/docker-e2e:20.0-ubuntu as base
+RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
+    apt-get install -y nodejs
 
 RUN mkdir /app
 RUN echo 
