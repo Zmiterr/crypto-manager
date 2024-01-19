@@ -1,4 +1,4 @@
-import { Box } from '@mui/material'
+import { Box, ButtonProps } from '@mui/material'
 import clsx from 'clsx'
 import React, { FC, forwardRef, MouseEventHandler, PropsWithChildren, ReactNode } from 'react'
 
@@ -21,7 +21,8 @@ export type Props = PropsWithChildren<
     className: string
     isFullWidth: boolean
     type: 'submit' | 'button'
-  }>
+  }> &
+    Omit<ButtonProps, 'variant'>
 >
 
 /**

@@ -21,6 +21,8 @@ const Header = ({ className }: Props) => {
   const isMobile = useMediaQuery((theme) => theme.breakpoints.down('md'))
   const { wallet, hasProvider, isConnecting, connectMetaMask } = useMetaMask()
 
+  const isConnected = wallet.accounts.length > 0
+
   return (
     <StyledHeader className={className}>
       <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'} width={'100%'}>
@@ -31,12 +33,12 @@ const Header = ({ className }: Props) => {
               Install MetaMask
             </Link>
           )}
-          {window.ethereum?.isMetaMask && wallet.accounts.length < 1 && (
-            <Button variant={'secondary'} isDisabled={isConnecting} onClick={connectMetaMask}>
-              Connect MetaMask
+          {window.ethereum?.isMetaMask && (
+            <Button variant={'secondary'} id="connectButton" isDisabled={isConnecting} onClick={connectMetaMask}>
+              {isConnected ? 'Connected' : 'Connect MetaMask'}
             </Button>
           )}
-          {hasProvider && wallet.accounts.length > 0 && (
+          {hasProvider && isConnected && (
             <Link>
               <a
                 href={`https://bscscan.com/address/${wallet.accounts[0]}`}

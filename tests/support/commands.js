@@ -1,3 +1,3 @@
-// import "@testing-library/cypress/add-commands";
-
-// add custom functions
+/*
+// put your commands here
+*/
