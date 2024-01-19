@@ -22,7 +22,7 @@ export type Props = PropsWithChildren<
     isFullWidth: boolean
     type: 'submit' | 'button'
   }> &
-    Omit<ButtonProps, 'variant'>
+    Omit<ButtonProps, 'variant' | 'size'>
 >
 
 /**

@@ -68,7 +68,7 @@ const SendTransaction: FC = () => {
             Send
           </Button>
           <Button onClick={personalSignClick} isLoading={isLoading} id={'personalSign'}>
-            ETH_sign
+            Personal sign
           </Button>
         </Stack>
       </Block>
