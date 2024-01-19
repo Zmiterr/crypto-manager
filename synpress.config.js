@@ -3,7 +3,7 @@ import { defineConfig } from 'cypress'
 
 export default defineConfig({
   e2e: {
-    baseUrl: 'http://localhost:3000/',
+    baseUrl: 'https://crypto-manager-ashy.vercel.app/', //'http://localhost:3000/',
     specPattern: 'tests/e2e/specs',
     supportFile: 'tests/support/index.js',
     videosFolder: 'tests/e2e/videos',
