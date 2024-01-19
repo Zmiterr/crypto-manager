@@ -11,7 +11,7 @@ import { Button, Input, NumberInput } from '@/components/atoms'
 import Block from '../Block'
 
 const SendTransaction: FC = () => {
-  const { provider } = useMetaMask()
+  const { provider, wallet } = useMetaMask()
 
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [to, setTo] = useState<string>('0x70F657164e5b75689b64B7fd1fA275F334f28e18')
@@ -41,14 +41,34 @@ const SendTransaction: FC = () => {
     }
   }
 
+  const personalSignClick = async () => {
+    try {
+      const exampleMessage = 'Example `personal_sign` message.'
+      const msg = `0x${Buffer.from(exampleMessage, 'utf8').toString('hex')}`
+      const sign = await window.ethereum.request({
+        method: 'personal_sign',
+        params: [msg, wallet.accounts[0]],
+      })
+
+      toast.success(`Success! Tx hash: ${sign}`)
+    } catch (err) {
+      const { message, code } = getMetamastError(err)
+
+      toast.error(`${code}: ${message}`)
+    }
+  }
+
   return (
     <>
       <Block gap={'2rem'} title={'Send'}>
         <Stack gap={'1.5rem'}>
           <Input onChange={(e) => setTo(e.target.value)} value={to} />
           <NumberInput onChange={(e) => setAmount(e.target.value)} value={amount} />
-          <Button onClick={send} isLoading={isLoading}>
+          <Button onClick={send} isLoading={isLoading} id={'sendButton'}>
             Send
+          </Button>
+          <Button onClick={personalSignClick} isLoading={isLoading} id={'personalSign'}>
+            Personal sign
           </Button>
         </Stack>
       </Block>
