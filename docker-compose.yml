@@ -13,12 +13,13 @@ services:
       - GH_USERNAME=${GH_USERNAME}
     depends_on:
       - display
+      - nextjs
     entrypoint: []
     working_dir: /app
     command: >
       bash -c 'echo -n "======> local noVNC URL:
       http://localhost:8080/vnc.html?autoconnect=true " && npx wait-on
-      http://display:8080 && yarn test'
+      http://display:8080 && npx wait-on http://nextjs:3000 && yarn test'
     networks:
       - x11
 
@@ -33,6 +34,7 @@ services:
       - '8080:8080'
     networks:
       - x11
+
   ngrok:
     profiles:
       - ngrok
@@ -92,7 +94,19 @@ services:
     ports:
       - '8546:8546'
     networks:
-      - x11    
+      - x11
+
+  nextjs:
+    container_name: nextjs
+    image: node:18-alpine
+    working_dir: /app
+    volumes:
+      - .:/app
+    ports:
+      - '3000:3000'
+    command: ['yarn', 'dev']
+    networks:
+      - x11
 
 networks:
   x11:
